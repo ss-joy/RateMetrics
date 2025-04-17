@@ -1,13 +1,14 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "5ce43052449bc092fee5b076164fe27c"
-application_url = "https://example.com/"
+application_url = "https://continuously-gs-competitors-anaheim.trycloudflare.com"
 embedded = true
 name = "star-score"
 handle = "star-score"
 
 [build]
 include_config_on_deploy = true
+automatically_update_urls_on_dev = true
 
 [webhooks]
 api_version = "2025-04"
@@ -25,7 +26,11 @@ api_version = "2025-04"
 scopes = "write_products"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://continuously-gs-competitors-anaheim.trycloudflare.com/auth/callback",
+  "https://continuously-gs-competitors-anaheim.trycloudflare.com/auth/shopify/callback",
+  "https://continuously-gs-competitors-anaheim.trycloudflare.com/api/auth/callback"
+]
 
 [pos]
 embedded = false
