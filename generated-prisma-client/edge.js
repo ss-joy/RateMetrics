@@ -139,7 +139,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/ki/work/shopify/star-score/prisma/generated-prisma-client",
+      "value": "/home/ki/work/shopify/star-score/generated-prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -157,10 +157,10 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null,
+    "schemaEnvPath": "../.env"
   },
-  "relativePath": "..",
+  "relativePath": "../prisma",
   "clientVersion": "6.6.0",
   "engineVersion": "f676762280b54cd07c770017ed3711ddde35f37a",
   "datasourceNames": [
@@ -176,8 +176,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated-prisma-client\"\n}\n\n// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long\n// enough when changing adapters.\n// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:dev.sqlite\"\n}\n\nmodel Session {\n  id            String    @id\n  shop          String\n  state         String\n  isOnline      Boolean   @default(false)\n  scope         String?\n  expires       DateTime?\n  accessToken   String\n  userId        BigInt?\n  firstName     String?\n  lastName      String?\n  email         String?\n  accountOwner  Boolean   @default(false)\n  locale        String?\n  collaborator  Boolean?  @default(false)\n  emailVerified Boolean?  @default(false)\n}\n\nmodel Ratings {\n  id         Int    @id\n  userId     Int    @map(\"user_id\")\n  productId  Int    @map(\"product_id\")\n  shopId     Int    @map(\"shop_id\")\n  shopDomain String @map(\"shop_domain\")\n  rateValue  Int    @map(\"rate_value\")\n\n  @@map(\"ratings\")\n}\n",
-  "inlineSchemaHash": "bc9e1c540f008c98c88d05508acaf0b80f559b530ef492db5b0ebf1185770975",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated-prisma-client\"\n}\n\n// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long\n// enough when changing adapters.\n// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:dev.sqlite\"\n}\n\nmodel Session {\n  id            String    @id\n  shop          String\n  state         String\n  isOnline      Boolean   @default(false)\n  scope         String?\n  expires       DateTime?\n  accessToken   String\n  userId        BigInt?\n  firstName     String?\n  lastName      String?\n  email         String?\n  accountOwner  Boolean   @default(false)\n  locale        String?\n  collaborator  Boolean?  @default(false)\n  emailVerified Boolean?  @default(false)\n}\n\nmodel Ratings {\n  id         Int    @id\n  userId     Int    @map(\"user_id\")\n  productId  Int    @map(\"product_id\")\n  shopId     Int    @map(\"shop_id\")\n  shopDomain String @map(\"shop_domain\")\n  rateValue  Int    @map(\"rate_value\")\n\n  @@map(\"ratings\")\n}\n",
+  "inlineSchemaHash": "266c3a176c5cd0e6b131e4b1cbc0a0dee9aa41e2e03427dbf1f038785bae7b74",
   "copyEngine": true
 }
 config.dirname = '/'
