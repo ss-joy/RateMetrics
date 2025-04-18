@@ -30,3 +30,14 @@ model Session {
   collaborator  Boolean?  @default(false)
   emailVerified Boolean?  @default(false)
 }
+
+model Ratings {
+  id         Int    @id
+  userId     Int    @map("user_id")
+  productId  Int    @map("product_id")
+  shopId     Int    @map("shop_id")
+  shopDomain String @map("shop_domain")
+  rateValue  Int    @map("rate_value")
+
+  @@map("ratings")
+}
