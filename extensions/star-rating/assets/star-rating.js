@@ -87,7 +87,7 @@ const app = createApp({
     }
   },
   template: `
-    <div style="display: flex; gap: 4px; cursor: pointer;">
+    <div v-if="userId" style="display: flex; gap: 4px; cursor: pointer;">
       <svg
         v-for="i in 5"
         :key="i"
