@@ -32,12 +32,13 @@ model Session {
 }
 
 model Ratings {
-  id         Int    @id
-  userId     Int    @map("user_id")
-  productId  Int    @map("product_id")
-  shopId     Int    @map("shop_id")
+  id         Int    @id @default(autoincrement())
+  userId     BigInt @map("user_id")
+  productId  BigInt @map("product_id")
+  shopId     BigInt @map("shop_id")
   shopDomain String @map("shop_domain")
   rateValue  Int    @map("rate_value")
 
+  @@unique([userId, shopId, productId])
   @@map("ratings")
 }

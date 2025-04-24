@@ -1,12 +1,14 @@
-{% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
-<span style="color:{{ block.settings.colour }}">
-  {% render 'stars', rating: avg_rating %}
-</span>
-{% if avg_rating >= 4 %}
-  <br>
-  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
-  {{ 'ratings.home.recommendationText' | t }}
-{% endif %}
+{% comment %} {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %} {% endcomment %}
+<div
+  id="vue-app"
+  data-product-id="{{ product.id | json }}"
+  data-shop-id="{{ shop.id | json }}"
+  data-shop-domain="{{ shop.domain }}"
+  data-customer-id="{{ customer.id }}"
+></div>
+
+<script type="module" src="{{ 'vue-source.js' | asset_url }}" defer></script>
+<script type="module" src="{{ 'star-rating.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -18,4 +20,3 @@
   ]
 }
 {% endschema %}
-
