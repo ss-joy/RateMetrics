@@ -22,10 +22,11 @@ const app = createApp({
     async setRating(index) {
       this.selectedRating = index;
 
-      // if (!this.userId) {
-      //   console.warn("User is not logged in. Cannot submit rating.");
-      //   return;
-      // }
+      if (!this.userId) {
+        alert("You are not logged in. Cannot submit rating.");
+        console.warn("User is not logged in. Cannot submit rating.");
+        return;
+      }
 
       try {
         const res = await fetch(`${this.baseUrl}/api/product-rating`, {
@@ -44,8 +45,13 @@ const app = createApp({
 
         const data = await res.json();
         console.log("Rating submitted successfully:", data);
+        await this.fetchRating();
+        alert("Rating submitted successfully");
       } catch (err) {
-        console.error("Failed to submit rating", err);
+        alert(
+          "Failed to submit rating. Something went wrong. Please try again",
+        );
+        console.log("Failed to submit rating", err);
       }
     },
     getFillColor(index) {
@@ -63,9 +69,7 @@ const app = createApp({
           `${this.baseUrl}/api/product-rating?productId=${this.productId}`,
         );
         const data = await response.json();
-        if (typeof data === "number") {
-          this.selectedRating = data;
-        }
+        this.selectedRating = data;
       } catch (err) {
         console.log("Failed to fetch rating", err);
       }

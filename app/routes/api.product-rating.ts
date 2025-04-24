@@ -31,7 +31,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
     return await cors(
       request,
-      new Response(JSON.stringify({ avgRating: avgrating })),
+      new Response(JSON.stringify(avgrating._avg.rateValue)),
       {
         origin: "*",
       },
@@ -58,16 +58,38 @@ export async function action({ request }: ActionFunctionArgs) {
     const body = await request.json();
     const { productId, rateValue, shopId, shopDomain, userId } =
       ratingsSchema.parse(body);
-    const dbresp = await prisma.ratings.create({
-      data: {
-        productId,
-        rateValue,
-        shopDomain,
-        shopId,
-        userId,
+
+    const userRatingExists = await prisma.ratings.findFirst({
+      where: {
+        userId: userId,
+        productId: productId,
+        shopId: shopId,
       },
     });
-    console.log(dbresp);
+    let dbresp;
+    if (userRatingExists) {
+      dbresp = await prisma.ratings.update({
+        where: {
+          id: userRatingExists.id,
+          shopId: shopId,
+          userId: userId,
+          productId: productId,
+        },
+        data: {
+          rateValue,
+        },
+      });
+    } else {
+      dbresp = await prisma.ratings.create({
+        data: {
+          productId,
+          rateValue,
+          shopDomain,
+          shopId,
+          userId,
+        },
+      });
+    }
     return await cors(
       request,
       new Response(
