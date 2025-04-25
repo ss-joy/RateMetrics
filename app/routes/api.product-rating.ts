@@ -66,9 +66,8 @@ export async function action({ request }: ActionFunctionArgs) {
         shopId: shopId,
       },
     });
-    let dbresp;
     if (userRatingExists) {
-      dbresp = await prisma.ratings.update({
+      await prisma.ratings.update({
         where: {
           id: userRatingExists.id,
           shopId: shopId,
@@ -80,7 +79,7 @@ export async function action({ request }: ActionFunctionArgs) {
         },
       });
     } else {
-      dbresp = await prisma.ratings.create({
+      await prisma.ratings.create({
         data: {
           productId,
           rateValue,
@@ -95,7 +94,6 @@ export async function action({ request }: ActionFunctionArgs) {
       new Response(
         JSON.stringify({
           message: "Rating added successfully",
-          data: dbresp,
         }),
       ),
       {
