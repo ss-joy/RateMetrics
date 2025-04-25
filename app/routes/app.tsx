@@ -27,6 +27,9 @@ export default function App() {
         <Link to="/app/view-products-ratings" rel="View Product Ratings">
           View Product Ratings
         </Link>
+        <Link to="/app/view-analytics" rel="View Product Ratings">
+          View Charts Analytis
+        </Link>
       </NavMenu>
       <Outlet />
     </AppProvider>
